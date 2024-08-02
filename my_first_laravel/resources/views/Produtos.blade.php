@@ -1,97 +1,59 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Produtos</title>
-    <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/products.css') }}"> <!-- Adicione seu CSS específico para a página de produtos -->
+    <title>Lista de Produtos</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}"> <!-- Inclua seu CSS aqui -->
 </head>
 
 <body>
-    <div class="container_principal">
-        <x-navbar class="navbar">
-            @include('components.navbar')
-        </x-navbar>
+    <div class="container mt-4">
+        <h1 class="mb-4">Produtos</h1>
 
-        <header class="products-header">
-            <div class="container">
-                <h1>Nossos Produtos</h1>
-                <p>Encontre o que você precisa com nossa seleção exclusiva de produtos.</p>
-            </div>
-        </header>
+        <a href="" class="btn btn-primary mb-3">Adicionar Produto</a>
 
-        <div class="container">
-            <aside class="filters">
-                <h2>Filtros</h2>
-                <form action="#" method="GET">
-                    <div class="filter-group">
-                        <label for="category">Categoria</label>
-                        <select id="category" name="category">
-                            <option value="">Todas</option>
-                            <option value="eletronicos">Eletrônicos</option>
-                            <option value="roupas">Roupas</option>
-                            <option value="livros">Livros</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="price">Preço</label>
-                        <select id="price" name="price">
-                            <option value="">Todos</option>
-                            <option value="baixo">Até R$100</option>
-                            <option value="medio">R$100 - R$500</option>
-                            <option value="alto">Acima de R$500</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn-primary">Aplicar Filtros</button>
-                </form>
-            </aside>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($produtos as $produto)
+                <tr>
+                    <td>{{ $produto->id }}</td>
+                    <td>{{ $produto->nome }}</td>
+                    <td>{{ $produto->descricao }}</td>
+                    <td>{{ number_format($produto->preco, 2, ',', '.') }}</td>
+                    <td>{{ $produto->quantidade }}</td>
+                    <td class="d-flex">
+                        <a href="{{ route('produtos.show', $produto->id) }}" class="btn btn-info btn-sm me-2">Ver</a>
+                        <a href="{{ route('produtos.edit', $produto->id) }}" class="btn btn-warning btn-sm me-2">Editar</a>
 
-            <main class="product-list">
-                <div class="product-item">
-                    <img src="https://via.placeholder.com/150" alt="Produto 1">
-                    <h3>Produto 1</h3>
-                    <p>Descrição curta do produto 1. Inclui informações básicas sobre o item.</p>
-                    <p class="price">R$99,99</p>
-                    <a href="#" class="btn-secondary">Comprar</a>
-                </div>
-                <div class="product-item">
-                    <img src="https://via.placeholder.com/150" alt="Produto 2">
-                    <h3>Produto 2</h3>
-                    <p>Descrição curta do produto 2. Inclui informações básicas sobre o item.</p>
-                    <p class="price">R$149,99</p>
-                    <a href="#" class="btn-secondary">Comprar</a>
-                </div>
-                <div class="product-item">
-                    <img src="https://via.placeholder.com/150" alt="Produto 3">
-                    <h3>Produto 3</h3>
-                    <p>Descrição curta do produto 3. Inclui informações básicas sobre o item.</p>
-                    <p class="price">R$199,99</p>
-                    <a href="#" class="btn-secondary">Comprar</a>
-                </div>
-                <!-- Adicione mais produtos conforme necessário -->
-            </main>
-        </div>
-
-        <section class="featured-product">
-            <div class="container">
-                <h2>Produto em Destaque</h2>
-                <div class="product-item featured">
-                    <img src="https://via.placeholder.com/300x300" alt="Produto Destaque">
-                    <h3>Produto em Destaque</h3>
-                    <p>Descrição detalhada do produto em destaque. Este é um item especial que você não vai querer perder!</p>
-                    <p class="price">R$299,99</p>
-                    <a href="#" class="btn-primary">Comprar Agora</a>
-                </div>
-            </div>
-        </section>
-
-        <x-footer class="footer">
-            @include('components.footer')
-        </x-footer>
+                        <form action="{{ route('produtos.destroy', $produto->id) }}" method="POST" class="m-0">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="6" class="text-center">Nenhum produto encontrado.</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
+
+    <script src="{{ asset('js/app.js') }}"></script> <!-- Inclua seu JavaScript aqui -->
 </body>
 
 </html>

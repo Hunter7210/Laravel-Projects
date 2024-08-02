@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Produto extends Model
 {
     use HasFactory;
+    //Inserir atributos
     protected $fillable = [
         'nome',
         'descricao',
