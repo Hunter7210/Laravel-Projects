@@ -2,15 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
- Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function () {
+    return view('Home');
 });
 
-Route::get('/hello', function () {
-    return view('HelloWorld'); /* Nome da pagina view*/
-}); 
+Route::get('/contatos', function () {
+    return view('Contatos'); /* Nome da pagina view*/
+});
 
 
-Route::get('/test', function() {
-    return view('test'); /* Nome da pagina view */
+Route::get('/produtos', function () {
+    return view('Produtos'); /* Nome da pagina view */
 });

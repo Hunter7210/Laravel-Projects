@@ -1,0 +1,86 @@
+/* Adicione este CSS ao seu arquivo home.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container_principal {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.hero-section {
+    background: #f4f4f4;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.services-section {
+    background: #fff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.services-section h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.service-item {
+    margin-bottom: 20px;
+}
+
+.service-item h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.testimonials-section {
+    background: #f9f9f9;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.testimonials-section h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.testimonial-item {
+    margin-bottom: 20px;
+}
+
+.testimonial-item p {
+    font-size: 18px;
+    font-style: italic;
+}
+
+.testimonial-item cite {
+    display: block;
+    font-size: 16px;
+    color: #555;
+}
