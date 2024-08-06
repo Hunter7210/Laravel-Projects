@@ -32,7 +32,7 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         //Validação nas colunas tal, da tabela
-        $request->validate(['nome' => 'required', 'preco' => 'required|decimal']);
+        $request->validate(['nome' => 'required', 'preco' => 'required|numeric']);
 
         Produto::create($request->all());
         //Método vindo da classe do banco de dados
@@ -62,7 +62,7 @@ class ProdutoController extends Controller
     {
         $request->validate([
             'nome' => 'required',
-            'preco' => 'required|decimal',
+            'preco' => 'required|numeric',
         ]);
 
         $produto->update($request->all());
