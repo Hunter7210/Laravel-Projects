@@ -1,0 +1,2 @@
+Quando for realizado o clone do github o laravel não puxa todos os pacotes certinho, é necessario dar o comando :
+composer install
