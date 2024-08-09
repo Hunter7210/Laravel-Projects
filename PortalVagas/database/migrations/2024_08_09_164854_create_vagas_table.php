@@ -13,9 +13,18 @@ return new class extends Migration
     {
         Schema::create('vagas', function (Blueprint $table) {
             $table->id();
+            $table->string('titulo');
+            $table->text('descricao');
+            $table->string('localizacao');
+            $table->decimal('salario', 10, 2)->nullable();
+            $table->foreignId('empresa_id')->constrained('empresas')->
+            onDelete('cascade');  // Relaciona a vaga à empresa
+
+
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

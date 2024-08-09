@@ -10,7 +10,7 @@ class Empresa extends Authenticatable
 {
     use Notifiable, HasFactory;
 
-    protected $fillable = ['nome', 'email', 'password', 'nomeEmpresa', 'descricao'];
+    protected $fillable = ['nome', 'email', 'password', 'nome_empresa', 'descricao_empresa'];
 
     protected $hidden = ['password', 'remember_token'];
 
