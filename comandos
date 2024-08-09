@@ -1,2 +1,8 @@
+Para criação do projeto:
+    composer create-project laravel/laravel PortalVagas --perfer-dist
+
+Para criação do banco de dados:
+    CREATE DATABASE portal_vagas
+
 Quando for realizado o clone do github o laravel não puxa todos os pacotes certinho, é necessario dar o comando :
 composer install
