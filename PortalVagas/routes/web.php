@@ -16,14 +16,13 @@ name('usuarios.login');
 
 
 // Rota para exibir o formulário de registro
-Route::get('/registro', [UsuarioController::class, 'showRegisterForm'])->
-name('usuarios.register');
+Route::get('/registro', [UsuarioController::class, 'showRegistroForm'])->
+name('usuarios.registro');
 
 
 // Rota para processar o registro
-Route::post('/registro', [UsuarioController::class, 'register'])->
-name('usuarios.register');
-
+Route::post('/registro', [UsuarioController::class, 'registro'])->
+name('usuarios.registro');
 
 // Rota para logout
 Route::post('/logout', [UsuarioController::class, 'logout'])->
@@ -34,3 +33,12 @@ name('usuarios.logout');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth')->name('dashboard');
+
+
+Route::get('/', function () {
+    return view('Home');
+});
+
+Route::get('/registro', function () {
+    return view('usuarios.registro');
+});

@@ -40,33 +40,31 @@ class UsuarioController extends Controller
 
 
     // Exibir o formulário de registro
-    public function showRegisterForm()
+    public function showRegistroForm()
     {
-        return view('usuarios.register');
+        return view('usuarios.registro');
     }
 
 
     // Processar o registro de um novo usuário
-    public function register(Request $request)
+    public function registro(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'nome' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:usuarios',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
 
         $usuario = Usuario::create([
-            'name' => $request->name,
+            'nome' => $request->nome,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
+    //  Auth::login($usuario);
 
-        Auth::login($usuario);
-
-
-        return redirect('/dashboard');
+        return redirect('/');
     }
 
 
