@@ -5,11 +5,11 @@
     </div>
     <nav>
       <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="vagas.html">Vagas</a></li>
-        <li><a href="empresas.html">Empresas</a></li>
-        <li><a href="sobre.html">Sobre Nós</a></li>
-        <li><a href="contato.html">Contato</a></li>
+        <li><a href="/">Início</a></li>
+        <li><a href="/vagas">Vagas</a></li>
+        <li><a href="/empresas">Empresas</a></li>
+        <li><a href="/sobre">Sobre Nós</a></li>
+        <li><a href="/contato">Contato</a></li>
       </ul>
     </nav>
     <div class="user-options">

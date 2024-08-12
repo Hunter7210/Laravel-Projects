@@ -62,9 +62,9 @@ class UsuarioController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-    //  Auth::login($usuario);
+        Auth::login($usuario);
 
-        return redirect('/');
+        return redirect('/dashboard');
     }
 
 

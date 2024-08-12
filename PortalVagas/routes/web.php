@@ -7,7 +7,7 @@ use App\Http\Controllers\UsuarioController;
 
 // Rota para exibir o formulário de login
 Route::get('/login', [UsuarioController::class, 'showLoginForm'])->
-name('usuarios.login');
+name('usuarios.login.form');
 
 
 // Rota para processar o login
@@ -17,7 +17,7 @@ name('usuarios.login');
 
 // Rota para exibir o formulário de registro
 Route::get('/registro', [UsuarioController::class, 'showRegistroForm'])->
-name('usuarios.registro');
+name('usuarios.registro.form');
 
 
 // Rota para processar o registro
@@ -31,8 +31,8 @@ name('usuarios.logout');
 
 // Rota para o dashboard, protegida por autenticação
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth')->name('dashboard');
+    return view('usuarios.dashboard');
+})->middleware('auth')->name('dashboard');  //Autenticação
 
 
 Route::get('/', function () {
