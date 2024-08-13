@@ -32,7 +32,7 @@ name('usuarios.logout');
 // Rota para o dashboard, protegida por autenticação
 Route::get('/dashboard', function () {
     return view('usuarios.dashboard');
-})->middleware('auth')->name('dashboard');  //Autenticação
+})->name('dashboard');  //Autenticação
 
 
 Route::get('/', function () {

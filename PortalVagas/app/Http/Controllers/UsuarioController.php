@@ -18,25 +18,24 @@ class UsuarioController extends Controller
     }
 
 
-    // Processar o login do usuário
-    public function login(Request $request)
-    {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+   // Processar o login do usuário
+   public function login(Request $request)
+   {
+       $request->validate([
+           'email' => 'required|string|email',
+           'password' => 'required|string',
+       ]);
 
+       $usuario = Usuario::where('email', $request->email)->first();
+       if ($usuario && Hash::check($request->password, $usuario->password)) {
 
-        if (Auth::guard('web')->attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
-        }
-
-
-        return back()->withErrors([
-            'email' => 'As credenciais não correspondem aos nossos registros.',
-        ])->onlyInput('email');
-    }
+           //Autentica o usuário
+           session(['usuario_id' => $usuario->id]);
+           return redirect()->route('dashboard');
+       } else {
+           return back()->withErrors(['email' => 'As credenciais fornecidas estão incorretas']);
+       }
+   }
 
 
     // Exibir o formulário de registro
