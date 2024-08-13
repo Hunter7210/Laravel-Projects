@@ -16,15 +16,14 @@
       @if(Auth::check())
 
       @if(request()->user()->where('tipo', 'empresa')->first())
-      <!-- BUSCAR O NOME DO USUARIO QUE ESTA LOGADO -->
-      <!-- <span>Olá, {{ Auth::user()->nome }}!</span>  -->
-      <form action="{{ route('usuarios.logout') }}" method="POST" style="display:inline;">
-        @csrf
-        <button type="submit" class="login">Sair</button>
-      </form>
-      <button class="login">Cadastrar Vaga</button>
-
-      @else
+        <!-- BUSCAR O NOME DO USUARIO QUE ESTA LOGADO -->
+        <!-- <span>Olá, {{ Auth::user()->nome }}!</span>  -->
+        <form action="{{ route('usuarios.logout') }}" method="POST" style="display:inline;">
+          @csrf
+          <button type="submit" class="login">Sair</button>
+        </form>
+        <button class="login">Cadastrar Vaga</button>
+      @elseif(request()->user()->where('tipo', 'usuario')->first())
       <form action="{{ route('usuarios.logout') }}" method="POST" style="display:inline;">
         @csrf
         <button type="submit" class="login">Sair</button>
