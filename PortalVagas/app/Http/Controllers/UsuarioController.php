@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Usuario;
+
 
 class UsuarioController extends Controller
 {
@@ -18,24 +19,28 @@ class UsuarioController extends Controller
     }
 
 
-   // Processar o login do usuário
-   public function login(Request $request)
-   {
-       $request->validate([
-           'email' => 'required|string|email',
-           'password' => 'required|string',
-       ]);
+    // Processar o login do usuário
+    public function login(Request $request) //Request guarda os valores dos meus campos
+    {
+        // Validações para o login
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
-       $usuario = Usuario::where('email', $request->email)->first();
-       if ($usuario && Hash::check($request->password, $usuario->password)) {
 
-           //Autentica o usuário
-           session(['usuario_id' => $usuario->id]);
-           return redirect()->route('dashboard');
-       } else {
-           return back()->withErrors(['email' => 'As credenciais fornecidas estão incorretas']);
-       }
-   }
+        // Tenta autenticar com o guard 'usuario'
+        if (Auth::guard('usuario')->attempt($credentials)) {
+            $request->session()->regenerate(); // Regenera a sessão para evitar fixação de sessão
+            return redirect()->intended('/dashboard');
+        }
+
+
+        // Se falhar, retorna com erro
+        return back()->withErrors([
+            'email' => 'As credenciais não correspondem aos nossos registros.',
+        ])->onlyInput('email');
+    }
 
 
     // Exibir o formulário de registro
@@ -48,6 +53,7 @@ class UsuarioController extends Controller
     // Processar o registro de um novo usuário
     public function registro(Request $request)
     {
+        // Validações para o registro
         $request->validate([
             'nome' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:usuarios',
@@ -55,13 +61,17 @@ class UsuarioController extends Controller
         ]);
 
 
+        // Cria um novo usuário
         $usuario = Usuario::create([
             'nome' => $request->nome,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        Auth::login($usuario);
+
+        // Faz login automático do novo usuário
+        Auth::guard('usuario')->login($usuario);
+
 
         return redirect('/dashboard');
     }
@@ -70,11 +80,12 @@ class UsuarioController extends Controller
     // Realizar o logout do usuário
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('usuario')->logout(); // Logout do guard 'usuario'
+        $request->session()->regenerateToken(); // Regenera o token da sessão
 
 
         $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        $request->session()->regenerate();// Invalida a sessão
 
 
         return redirect('/');
