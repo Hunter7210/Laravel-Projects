@@ -10,13 +10,7 @@ class Vaga extends Model
 {
     use Notifiable, HasFactory;
 
-    protected $fillable = ['titulo', 'descricao', 'localizacao', 'salario', 'empresa_id'];
-
-    // Criando as relações
-    public function empresa(){
-        return $this->belongsTo(Empresa::class); //A vaga pertence a empresa
-        // belongsTo = Pertence a ...
-    }
+    protected $fillable = ['titulo', 'descricao', 'localizacao', 'salario', 'empresa'];
 
     public function inscricoes(){
         return $this->hasMany(Inscricao::class);
