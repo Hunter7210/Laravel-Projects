@@ -17,9 +17,9 @@ return new class extends Migration
             $table->text('descricao');
             $table->string('localizacao');
             $table->decimal('salario', 10, 2);
-            $table->string('empresa');
-            /* $table->foreignId('empresa_id')->constrained('empresas')->
-            onDelete('cascade'); */  // Relaciona a vaga à empresa
+            $table->string('empresa');/* 
+            $table->foreignId('id_usu')->constrained('usuarios')->
+            onDelete('cascade');  // Relaciona a vaga à empresa */
             $table->timestamps();
         });
     }

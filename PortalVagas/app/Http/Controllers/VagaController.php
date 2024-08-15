@@ -87,4 +87,8 @@ class VagaController extends Controller
         return redirect()->route('vagas.index')->with('success', 'Vaga deletada com sucesso');
 
     }
+
+
+
+
 }

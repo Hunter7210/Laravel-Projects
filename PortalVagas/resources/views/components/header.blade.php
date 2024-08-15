@@ -18,24 +18,20 @@
                     $user = Auth::user();
                 @endphp
 
-                @if ($user->tipo === 'empresa')
-                    <!-- BUSCAR O NOME DO USUARIO QUE ESTA LOGADO -->
-                    <!-- <span>Olá, {{ $user->nome }}!</span>  -->
+                @if ($user->isEmpresa())
                     <form action="{{ route('usuarios.logout') }}" method="POST" style="display:inline;">
                         @csrf
                         <button type="submit" class="login">Sair</button>
-                    </form>
-                    <form action="{{ route('vagas.create') }}" method="POST" style="display:inline;">
-                        @csrf
-                        <button type="submit" class="login">Cadastrar Vaga</button>
                     </form>
 
-                @elseif($user->tipo === 'usuario')
-                    <form action="{{ route('usuarios.logout') }}" method="POST" style="display:inline;">
-                        @csrf
-                        <button type="submit" class="login">Sair</button>
-                    </form>
-                    <button class="login">Ver Vagas</button>
+                    <a href="/vagas" type="submit" class="login">Cadastrar Vaga</a>
+                   
+                    @elseif($user->isUser())
+                        <form action="{{ route('usuarios.logout') }}" method="POST" style="display:inline;">
+                            @csrf
+                            <button type="submit" class="login">Sair</button>
+                        </form>
+                        <button class="login">Ver Vagas</button>
                 @endif
             @else
                 <a href="{{ route('usuarios.login') }}" class="login">Login</a>

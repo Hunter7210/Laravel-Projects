@@ -10,9 +10,12 @@ class Vaga extends Model
 {
     use Notifiable, HasFactory;
 
-    protected $fillable = ['titulo', 'descricao', 'localizacao', 'salario', 'empresa'];
+    protected $fillable = ['titulo', 'descricao', 'localizacao', 'salario', 'empresa'/* , 'id_usu' */];
 
     public function inscricoes(){
         return $this->hasMany(Inscricao::class);
     }
+/*     public function usuarios(){
+        return $this->hasMany(Usuario::class);
+    } */
 }
