@@ -1,0 +1,94 @@
+/* Adicionando estilo para a área de conteúdo */
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Estilo para o título principal */
+h1 {
+    font-size: 2rem;
+    color: #333;
+}
+
+/* Estilo para a mensagem de sucesso */
+.alert {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* Estilo para os botões */
+.btn {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 10px 15px;
+    text-decoration: none;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Estilo para a tabela */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    border-collapse: collapse;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+.table td {
+    color: #212529;
+}
+
+.table td button {
+    margin-left: 5px;
+}
+
+/* Estilo para a formatação das ações */
+.table td form {
+    display: flex;
+    gap: 5px;
+}

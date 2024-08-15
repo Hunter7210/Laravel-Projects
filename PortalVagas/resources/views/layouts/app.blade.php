@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/registro.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/vagas/index.css') }}">
 
 </head>
 

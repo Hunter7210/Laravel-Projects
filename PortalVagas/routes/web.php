@@ -3,7 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsuarioController;
-
+use App\Http\Controllers\VagaController;
 
 // Rota para exibir o formulário de login
 Route::get('/login', [UsuarioController::class, 'showLoginForm'])->
@@ -42,3 +42,5 @@ Route::get('/', function () {
 Route::get('/registro', function () {
     return view('usuarios.registro');
 });
+
+Route::resource('/vagas', VagaController::class);

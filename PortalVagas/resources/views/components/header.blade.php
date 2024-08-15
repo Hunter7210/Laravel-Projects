@@ -25,7 +25,11 @@
                         @csrf
                         <button type="submit" class="login">Sair</button>
                     </form>
-                    <button class="login">Cadastrar Vaga</button>
+                    <form action="{{ route('vagas.create') }}" method="POST" style="display:inline;">
+                        @csrf
+                        <button type="submit" class="login">Cadastrar Vaga</button>
+                    </form>
+
                 @elseif($user->tipo === 'usuario')
                     <form action="{{ route('usuarios.logout') }}" method="POST" style="display:inline;">
                         @csrf

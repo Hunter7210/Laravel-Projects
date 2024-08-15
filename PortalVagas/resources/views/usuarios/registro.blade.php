@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- {{-- formulario --}} -->
+<!-- {{-- formulario --}} -->w
 <div class="container">
     <h1>Registrar-se</h1>
 

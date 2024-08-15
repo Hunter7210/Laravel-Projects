@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vaga;
 use Illuminate\Http\Request;
 
 class VagaController extends Controller
@@ -11,7 +12,9 @@ class VagaController extends Controller
      */
     public function index()
     {
-        //
+        //serve para listar todas as pagina disponivels
+        $vagas = Vaga::all();
+        return view('vagas.index', compact('vagas'));
     }
 
     /**
@@ -19,46 +22,69 @@ class VagaController extends Controller
      */
     public function create()
     {
-        //
+        //Direciona para o formulario de crialção de vagas
+        return view('vagas.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) //Busca as informações do formulario e armazena no request
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        //Envia a vaga para o banco de dados POST
+        $dados = $request->validate([
+            'titulo' => 'required|max:100',
+            'descricao' => 'required',
+            'localizacao' => 'required',
+            'salario' => 'required|numeric',
+            'empresa' => 'required'
+        ]);
+        Vaga::create($dados);
+
+        return redirect()->route('vagas.index')->with('success', 'Vaga criado com sucesso');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Vaga $vaga) //Realizar esta mudança
     {
-        //
+        //Direciona para a pagina de update
+        return view('vagas.edit', compact('vaga'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Vaga $vaga)
     {
-        //
+        //realiza o Update dos dados
+    
+        //Envia a vaga para o banco de dados POST
+        $dados = $request->validate([
+            'titulo' => 'required|max:100',
+            'descricao' => 'required',
+            'localizacao' => 'required',
+            'salario' => 'required|numeric',
+            'empresa' => 'required'
+        ]);
+        $vaga->update($dados);
+
+        return redirect()->route('vagas.index')->with('success', 'Vaga atualizada com sucesso');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Vaga $vaga)
     {
-        //
+        //Usado para destruir a minha conexão como o banco de dados
+        $vaga->delete($vaga);
+
+        return redirect()->route('vagas.index')->with('success', 'Vaga deletada com sucesso');
+
     }
 }
