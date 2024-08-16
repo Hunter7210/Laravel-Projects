@@ -16,9 +16,12 @@ class VagaController extends Controller
         //serve para listar todas as pagina disponivels
         //Objetivo é visualizar as vagas cadastradas de acordo com o nome do usuario, ou seja, cada usucario visualiza as vagas de sua propria empresa
         $usuario = Auth::user()->nome_empresa;
+        /* Codigo feito pelo Diogo */
+        /*   $vagas = Vaga::when('$usuario', function($query, $usuario){
+            return $query->where('$usuario', 'like',$usuario);}); */
+        /* Codigo feito pelo sinico */
         $vagas = Vaga::where('empresa', $usuario)->get();
         return view('vagas.index', compact('vagas'));
-        
     }
 
     /**
@@ -88,4 +91,13 @@ class VagaController extends Controller
 
         return redirect()->route('vagas.index')->with('success', 'Vaga deletada com sucesso');
     }
+
+    public function show(Vaga $vaga){
+        return view('vagas.show', compact('vaga'));
+    }
 }
+
+
+
+
+

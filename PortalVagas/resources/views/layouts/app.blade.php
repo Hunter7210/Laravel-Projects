@@ -11,18 +11,21 @@
     <link rel="stylesheet" href="{{ asset('assets/css/home.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/registro.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/vagas/index.css') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
 <body>
     <!-- header -->
     @include('components.header')
-    <div class="container">
+    <div> </div>
+
         @yield('content')
-    </div>
+    
     <!-- footer -->
     @include('components.footer')
 </body>
 <!-- scripts js -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </html>

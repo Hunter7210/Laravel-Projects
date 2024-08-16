@@ -31,7 +31,8 @@
                             @csrf
                             <button type="submit" class="login">Sair</button>
                         </form>
-                        <button class="login">Ver Vagas</button>
+                         <a href="/vagas" type="submit" class="login">Ver Vagas</a>
+                
                 @endif
             @else
                 <a href="{{ route('usuarios.login') }}" class="login">Login</a>
