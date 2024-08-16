@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vaga;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VagaController extends Controller
 {
@@ -13,8 +14,11 @@ class VagaController extends Controller
     public function index()
     {
         //serve para listar todas as pagina disponivels
-        $vagas = Vaga::all();
+        //Objetivo é visualizar as vagas cadastradas de acordo com o nome do usuario, ou seja, cada usucario visualiza as vagas de sua propria empresa
+        $usuario = Auth::user()->nome_empresa;
+        $vagas = Vaga::where('empresa', $usuario)->get();
         return view('vagas.index', compact('vagas'));
+        
     }
 
     /**
@@ -52,7 +56,6 @@ class VagaController extends Controller
     {
         //Direciona para a pagina de update
         return view('vagas.edit', compact('vaga'));
-
     }
 
     /**
@@ -61,7 +64,7 @@ class VagaController extends Controller
     public function update(Request $request, Vaga $vaga)
     {
         //realiza o Update dos dados
-    
+
         //Envia a vaga para o banco de dados POST
         $dados = $request->validate([
             'titulo' => 'required|max:100',
@@ -73,7 +76,6 @@ class VagaController extends Controller
         $vaga->update($dados);
 
         return redirect()->route('vagas.index')->with('success', 'Vaga atualizada com sucesso');
-
     }
 
     /**
@@ -85,10 +87,5 @@ class VagaController extends Controller
         $vaga->delete($vaga);
 
         return redirect()->route('vagas.index')->with('success', 'Vaga deletada com sucesso');
-
     }
-
-
-
-
 }
